@@ -32,8 +32,10 @@ namespace _6PracticeWpf
 
            
         }
-        
-         public void RefreshWorkerInf()
+        /// <summary>
+        /// Метод обновления информации о сотруднике
+        /// </summary>
+        public void RefreshWorkerInf()
         {
             
             foreach (Worker worker in db.Worker)
@@ -52,37 +54,47 @@ namespace _6PracticeWpf
 
         private void AcceptBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (AcceptBtn.Content == "Добавить")
+            /// <summary>
+            /// Условый оператор if необходим для использования одного окна для изменения и добавления. 
+            /// </summary>
+            try
             {
-                Worker worker = new Worker();
-                worker.Name = NameTb.Text;
-                worker.Surname = SurnameTb.Text;
-                worker.MiddleName = MiddlenameTb.Text;
-                worker.Gender = GenderTb.Text;
-                worker.MaritalStatus = MaritalstatusTb.Text;
-                db.Worker.Add(worker);
-            }
-            else
-            {
-                
-                foreach (Worker worker in db.Worker)
+                if (AcceptBtn.Content == "Добавить")
+                {
+                    Worker worker = new Worker();
+                    worker.Name = NameTb.Text;
+                    worker.Surname = SurnameTb.Text;
+                    worker.MiddleName = MiddlenameTb.Text;
+                    worker.Gender = GenderTb.Text;
+                    worker.MaritalStatus = MaritalstatusTb.Text;
+                    db.Worker.Add(worker);
+                }
+                else
                 {
 
-                    if (worker.Id == _window.workid)
+                    foreach (Worker worker in db.Worker)
                     {
-                        worker.Name = NameTb.Text;
-                        worker.Surname = SurnameTb.Text;
-                        worker.MiddleName = MiddlenameTb.Text;
-                        worker.Gender = GenderTb.Text;
-                        worker.MaritalStatus = MaritalstatusTb.Text;
+
+                        if (worker.Id == _window.workid)
+                        {
+                            worker.Name = NameTb.Text;
+                            worker.Surname = SurnameTb.Text;
+                            worker.MiddleName = MiddlenameTb.Text;
+                            worker.Gender = GenderTb.Text;
+                            worker.MaritalStatus = MaritalstatusTb.Text;
+                        }
                     }
                 }
+
+                db.SaveChanges();
+                _window.RefreshWorkers();
+                _window.workid = 0;
+                this.Close();
             }
-            
-            db.SaveChanges();
-            _window.RefreshWorkers();
-            _window.workid = 0;
-            this.Close();
+            catch
+            {
+                MessageBox.Show("Произошла ошибка!");
+            }
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)

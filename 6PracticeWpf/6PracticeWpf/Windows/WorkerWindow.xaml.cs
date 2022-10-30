@@ -31,12 +31,15 @@ namespace _6PracticeWpf
 
         }
         public int workid;
+        /// <summary>
+        /// Метод обновления таблицы.
+        /// </summary>
         public void RefreshWorkers()
         {
             PracticeDBEntities _db = new PracticeDBEntities();
             GridWorkers.ItemsSource = _db.Worker.ToList();
         }
-
+        
         private void BtnEditWorker_Click(object sender, RoutedEventArgs e)
         {
             

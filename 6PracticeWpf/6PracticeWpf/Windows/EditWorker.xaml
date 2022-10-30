@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_6PracticeWpf"
         mc:Ignorable="d"
-        Title="Изменение сотрудника" Height="450" Width="450" MaxHeight="450" MaxWidth="450">
+        Icon="C:\6Practice\6PracticeWpf\6PracticeWpf\Resources\Logo.jpg" Title="Окно изменения сотрудника" Background="LightGray" Height="450" Width="450" MaxHeight="450" MaxWidth="450" MinHeight="450" MinWidth="450">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
@@ -29,7 +29,7 @@
         <TextBox FontSize="14" Name="MiddlenameTb" FontFamily="Comic Sans MS" Grid.Column="1" Grid.Row="2"></TextBox>
         <TextBox FontSize="14" Name="GenderTb" FontFamily="Comic Sans MS" Grid.Column="1" Grid.Row="3"></TextBox>
         <TextBox FontSize="14" Name="MaritalstatusTb" FontFamily="Comic Sans MS" Grid.Column="1" Grid.Row="4"></TextBox>
-        <Button Name="AcceptBtn" Grid.Column="0" Grid.Row="5" FontFamily="Comic Sans MS" FontSize="20" Click="AcceptBtn_Click" >Применить</Button>
-        <Button Name="CancelBtn" Grid.Column="1" Grid.Row="5" FontFamily="Comic Sans MS" FontSize="20" Click="CancelBtn_Click" >Отменить</Button>
+        <Button Name="AcceptBtn" Background="LightGreen" Grid.Column="0" Grid.Row="5" FontFamily="Comic Sans MS" FontSize="20" Click="AcceptBtn_Click" >Применить</Button>
+        <Button Name="CancelBtn" Background="LightPink" Grid.Column="1" Grid.Row="5" FontFamily="Comic Sans MS" FontSize="20" Click="CancelBtn_Click" >Отменить</Button>
     </Grid>
 </Window>
