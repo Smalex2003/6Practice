@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PracticeDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Division">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="StaffingTable" Relationship="Self.FK__StaffingTabl__Id__33D4B598" FromRole="Division" ToRole="StaffingTable" />
+    <NavigationProperty Name="WorkingPeriod" Relationship="Self.FK__WorkingPe__Divis__2C3393D0" FromRole="Division" ToRole="WorkingPeriod" />
+  </EntityType>
+  <EntityType Name="PosistionList">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PostId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="StaffingTableId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Post" Relationship="Self.FK__PosistioL__PostI__30F848ED" FromRole="PosistionList" ToRole="Post" />
+    <NavigationProperty Name="StaffingTable" Relationship="Self.FK__PosistioL__Staff__31EC6D26" FromRole="PosistionList" ToRole="StaffingTable" />
+  </EntityType>
+  <EntityType Name="Post">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ShortName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Cipher" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UpperDischargeLevel" Type="Int32" />
+    <Property Name="LowerDischargeLeve" Type="Int32" />
+    <NavigationProperty Name="PosistionList" Relationship="Self.FK__PosistioL__PostI__30F848ED" FromRole="Post" ToRole="PosistionList" />
+    <NavigationProperty Name="WorkingPeriod" Relationship="Self.FK__WorkingPe__PostI__2D27B809" FromRole="Post" ToRole="WorkingPeriod" />
+  </EntityType>
+  <EntityType Name="StaffingTable">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Division" Relationship="Self.FK__StaffingTabl__Id__33D4B598" FromRole="StaffingTable" ToRole="Division" />
+    <NavigationProperty Name="PosistionList" Relationship="Self.FK__PosistioL__Staff__31EC6D26" FromRole="StaffingTable" ToRole="PosistionList" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Worker">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MaritalStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="WorkingPeriod" Relationship="Self.FK__WorkingPe__Worke__2E1BDC42" FromRole="Worker" ToRole="WorkingPeriod" />
+  </EntityType>
+  <EntityType Name="WorkingPeriod">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DivisionID" Type="Int32" Nullable="false" />
+    <Property Name="PostId" Type="Int32" Nullable="false" />
+    <Property Name="Discharge" Type="Int32" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="WorkerId" Type="Int32" Nullable="false" />
+    <Property Name="FinishDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Division" Relationship="Self.FK__WorkingPe__Divis__2C3393D0" FromRole="WorkingPeriod" ToRole="Division" />
+    <NavigationProperty Name="Post" Relationship="Self.FK__WorkingPe__PostI__2D27B809" FromRole="WorkingPeriod" ToRole="Post" />
+    <NavigationProperty Name="Worker" Relationship="Self.FK__WorkingPe__Worke__2E1BDC42" FromRole="WorkingPeriod" ToRole="Worker" />
+  </EntityType>
+  <Association Name="FK__StaffingTabl__Id__33D4B598">
+    <End Role="Division" Type="Self.Division" Multiplicity="1" />
+    <End Role="StaffingTable" Type="Self.StaffingTable" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Division">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StaffingTable">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__WorkingPe__Divis__2C3393D0">
+    <End Role="Division" Type="Self.Division" Multiplicity="1" />
+    <End Role="WorkingPeriod" Type="Self.WorkingPeriod" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Division">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WorkingPeriod">
+        <PropertyRef Name="DivisionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PosistioL__PostI__30F848ED">
+    <End Role="Post" Type="Self.Post" Multiplicity="1" />
+    <End Role="PosistionList" Type="Self.PosistionList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PosistionList">
+        <PropertyRef Name="PostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PosistioL__Staff__31EC6D26">
+    <End Role="StaffingTable" Type="Self.StaffingTable" Multiplicity="1" />
+    <End Role="PosistionList" Type="Self.PosistionList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StaffingTable">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PosistionList">
+        <PropertyRef Name="StaffingTableId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__WorkingPe__PostI__2D27B809">
+    <End Role="Post" Type="Self.Post" Multiplicity="1" />
+    <End Role="WorkingPeriod" Type="Self.WorkingPeriod" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WorkingPeriod">
+        <PropertyRef Name="PostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__WorkingPe__Worke__2E1BDC42">
+    <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+    <End Role="WorkingPeriod" Type="Self.WorkingPeriod" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Worker">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WorkingPeriod">
+        <PropertyRef Name="WorkerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PracticeDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Division" EntityType="Self.Division" />
+    <EntitySet Name="PosistionList" EntityType="Self.PosistionList" />
+    <EntitySet Name="Post" EntityType="Self.Post" />
+    <EntitySet Name="StaffingTable" EntityType="Self.StaffingTable" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Worker" EntityType="Self.Worker" />
+    <EntitySet Name="WorkingPeriod" EntityType="Self.WorkingPeriod" />
+    <AssociationSet Name="FK__StaffingTabl__Id__33D4B598" Association="Self.FK__StaffingTabl__Id__33D4B598">
+      <End Role="Division" EntitySet="Division" />
+      <End Role="StaffingTable" EntitySet="StaffingTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__WorkingPe__Divis__2C3393D0" Association="Self.FK__WorkingPe__Divis__2C3393D0">
+      <End Role="Division" EntitySet="Division" />
+      <End Role="WorkingPeriod" EntitySet="WorkingPeriod" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PosistioL__PostI__30F848ED" Association="Self.FK__PosistioL__PostI__30F848ED">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="PosistionList" EntitySet="PosistionList" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PosistioL__Staff__31EC6D26" Association="Self.FK__PosistioL__Staff__31EC6D26">
+      <End Role="StaffingTable" EntitySet="StaffingTable" />
+      <End Role="PosistionList" EntitySet="PosistionList" />
+    </AssociationSet>
+    <AssociationSet Name="FK__WorkingPe__PostI__2D27B809" Association="Self.FK__WorkingPe__PostI__2D27B809">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="WorkingPeriod" EntitySet="WorkingPeriod" />
+    </AssociationSet>
+    <AssociationSet Name="FK__WorkingPe__Worke__2E1BDC42" Association="Self.FK__WorkingPe__Worke__2E1BDC42">
+      <End Role="Worker" EntitySet="Worker" />
+      <End Role="WorkingPeriod" EntitySet="WorkingPeriod" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(PracticeDBModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(PracticeDBModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

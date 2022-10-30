@@ -24,5 +24,17 @@ namespace _6PracticeWpf
         {
             InitializeComponent();
         }
+
+        private void WorkerBtn_Click(object sender, RoutedEventArgs e)
+        {
+            WorkerWindow workwind = new WorkerWindow();
+            workwind.Show();
+        }
+
+        private void WorkerBtn_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            PostWindow postwindow = new PostWindow();
+            postwindow.Show();
+        }
     }
 }

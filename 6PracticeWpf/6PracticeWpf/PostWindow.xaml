@@ -1,0 +1,34 @@
+﻿<Window x:Class="_6PracticeWpf.PostWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_6PracticeWpf"
+        mc:Ignorable="d"
+        Title="PostWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="1" Name="PostGrid" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Код должности" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Название" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Краткое название" Binding="{Binding ShortName}"/>
+                <DataGridTextColumn Header="Шифр" Binding="{Binding Cipher}"/>
+                <DataGridTextColumn Header="Максимальный разряд" Binding="{Binding UpperDischargeLevel}"/>
+                <DataGridTextColumn Header="Минимальный разряд" Binding="{Binding LowerDischargeLeve}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="BtnDeletePost" Content="Удалить" Click="BtnDeletePost_Click"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>

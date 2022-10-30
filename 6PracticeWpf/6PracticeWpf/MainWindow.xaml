@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_6PracticeWpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Меню" Background="LightGray" Height="450" Width="444">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="49*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="WorkerBtn" Grid.Column="1" Content="Таблица работников" HorizontalAlignment="Center" Margin="0,119,0,0" VerticalAlignment="Top" Width="200" Height="42" FontSize="18" FontFamily="Comic Sans MS" RenderTransformOrigin="0,0" Click="WorkerBtn_Click"/>
+        <Button x:Name="WorkerBtn_Copy" Grid.Column="1" Content="Таблица должностей" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="42" FontSize="18" FontFamily="Comic Sans MS" RenderTransformOrigin="0,0" Click="WorkerBtn_Copy_Click"/>
+
     </Grid>
 </Window>

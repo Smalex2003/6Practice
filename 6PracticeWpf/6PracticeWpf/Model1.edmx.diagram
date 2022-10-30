@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="70fa2fca2682415286d39f08af9cfa60" Name="Diagram1">
+        <EntityTypeShape EntityType="PracticeDBModel.Division" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PracticeDBModel.PosistionList" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PracticeDBModel.Post" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PracticeDBModel.StaffingTable" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PracticeDBModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PracticeDBModel.Worker" Width="1.5" PointX="0.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PracticeDBModel.WorkingPeriod" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="PracticeDBModel.FK__StaffingTabl__Id__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="PracticeDBModel.FK__WorkingPe__Divis__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="PracticeDBModel.FK__PosistioL__PostI__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="PracticeDBModel.FK__PosistioL__Staff__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="PracticeDBModel.FK__WorkingPe__PostI__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="PracticeDBModel.FK__WorkingPe__Worke__2E1BDC42" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
